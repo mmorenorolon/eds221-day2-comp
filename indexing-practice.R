@@ -100,3 +100,54 @@ fruit[,2]
 
 #update elements
 fruit[2,1] <- "pineapple"
+
+#Select multiple elements
+x <- 1:10 #[1]  1  2  3  4  5  6  7  8  9 10
+x
+x[c(3,1,5)] #[1] 3 1 5
+x[c(1,1,1)] #[1] 1 1 1
+x[c(1.2, 5.4, 7.2)] #[1] 1 5 7
+
+#exclude elements
+x[-10] #[1] 1 2 3 4 5 6 7 8 9
+x[-c(2,4,6,8,10)] #[1] 1 3 5 7 9
+x[c(-1,2)] #doesn't work
+
+#logical vectors
+x[c(TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, 
+    FALSE, TRUE, FALSE)] #[1] 1 4 6 9
+
+x[x>3] #[1]  4  5  6  7  8  9 10
+
+x[] #original vector from 1 to 10
+x[0] #integer(0)
+
+#Subsetting and assigning multiple values
+x <- 1:5
+x[c(1, 2)] <- 2:3
+
+x[-1] <- 4:1
+x
+
+# Subset rows in data frames based on conditions (logical subsetting)
+mtcars[mtcars$gear == 5, ] #all values in gear = 5
+
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ] #filtered to cars with 5 gears, 4 cylinders 
+
+#shorthand version of the subset function
+subset(mtcars, gear == 5)
+subset(mtcars, gear == 5 & cyl == 4)
+
+#remove columns
+df <- data.frame(x = 1:3, 
+                 y = 3:1, 
+                 z = c("a", "b", "c"))
+
+df$z <- NULL
+
+df[c("x", "y")] 
+
+setdiff(names(df), "z")
+#[1] "x" "y"
+
+
